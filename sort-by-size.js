@@ -25,6 +25,7 @@
             var sizeBtn = document.getElementsByClassName('size')[0]
             setTimeout(()=>{
                 sizeBtn.click()
+                sizeBtn.click()
                 console.log('Sort By Size btn Clicked')
             },1200)
             setTimeout(()=>{
