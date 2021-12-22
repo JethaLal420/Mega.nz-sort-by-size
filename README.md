@@ -4,6 +4,8 @@ To use this you need [Tampermonkey](https://www.tampermonkey.net/) extension to 
 
 After installing Tampermonkey *click create a new script*.
 Paste code and *save* it.
+**OR**
+use [GreasyFork](https://greasyfork.org/en/scripts/437430-sort-mega-nz-files-by-size) to install script.
 
 Everytime mega.nz link is opened this script will run.
 
