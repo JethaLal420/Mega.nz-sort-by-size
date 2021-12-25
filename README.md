@@ -10,8 +10,7 @@ use [GreasyFork](https://greasyfork.org/en/scripts/437430-sort-mega-nz-files-by-
 Everytime mega.nz link is opened this script will run.
 
 ### USE CASE:
-- Script will sort files by size after interval.
-- To avoid clicking before loading or too fast, increase time in miliseconds according to your need.
+- Script will sort files by size on clicking of a sortbysize button.
 
 ### Sort By other parameters:
 - To sort by **type**, change classname in line 25 to **type**.
