@@ -1,45 +1,60 @@
 // ==UserScript==
 // @name         Sort Mega.nz files by size
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
+// @version      0.3
+// @description  Add sortbysize button on mega.nz
 // @author       JethaLal_420
 // @match        https://mega.nz/folder/*
 // @icon         https://www.google.com/s2/favicons?domain=mega.nz
 // @grant        none
 // ==/UserScript==
 
-(function() {
-    'use strict';
-    var listViewBtn, blockViewBtn
+(function () {
+  "use strict";
+  var listViewBtn, blockViewBtn;
 
-    function checkDataLoaded() {
-        listViewBtn = document.getElementsByClassName('listing-view')[0]
-        blockViewBtn = document.getElementsByClassName('block-view')[0]
+  const createBtn = (btnName) => {
+    var button = document.createElement("BUTTON");
+    button.innerHTML = btnName;
+    button.id = "sortbysize";
+    return button;
+  };
+
+  const checkDataLoaded = () => {
+    listViewBtn = document.getElementsByClassName("listing-view")[0];
+    blockViewBtn = document.getElementsByClassName("block-view")[0];
+  };
+
+  const sortBySize = () => {
+    listViewBtn.click();
+    console.log("List View btn Clicked");
+    var sizeBtn = document.getElementsByClassName("size")[0];
+    setTimeout(() => {
+      sizeBtn.click();
+      sizeBtn.click();
+    }, 500);
+    blockViewBtn.click();
+    console.log("Block View btn Clicked");
+  };
+
+  let intervalId = setInterval(() => {
+    checkDataLoaded();
+
+    if (listViewBtn && blockViewBtn) {
+      insertBtn();
     }
-    function clickBtn() {
-        clearInterval(intervalId)
-        setTimeout(() => {
-            listViewBtn.click()
-            console.log('List View btn Clicked')
-            var sizeBtn = document.getElementsByClassName('size')[0]
-            setTimeout(()=>{
-                sizeBtn.click()
-                sizeBtn.click()
-                console.log('Sort By Size btn Clicked')
-            },1200)
-            setTimeout(()=>{
-                blockViewBtn.click()
-                console.log('Block View btn Clicked')
-            },2100)
+  }, 1000);
 
-        }, 4500)
-    }
-    let intervalId = setInterval(() => {
-        checkDataLoaded()
+  const insertBtn = () => {
+    clearInterval(intervalId);
 
-        if (listViewBtn && blockViewBtn){
-            clickBtn()
-        }
-    }, 1000)
-    })();
+    var parentNode = document.getElementsByClassName(
+      "fm-breadcrumbs-wrapper"
+    )[0];
+    var childNode = document.getElementsByClassName("fm-breadcrumbs-block")[0];
+    var btn = createBtn("Sort_By_Size");
+    parentNode.insertBefore(btn, childNode);
+
+    btn.onclick = sortBySize;
+  };
+})();
